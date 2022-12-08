@@ -1,0 +1,51 @@
+не знаю, дойдете ли вы до 15 комплекта, но все же...
+
+1.
+git clone --recursive https://github.com/getdnsapi/stubby
+cd stubby/
+git checkout v0.4.0
+mkdir build
+cd build/
+cmake -DCMAKE_INSTALL_PREFIX=$HOME/tmp2 ../
+make
+make install
+export PATH=$PATH:$HOME/tmp2/bin
+export LD_LIBRARY_PATH=$HOME/tmp2/lib
+stubby -V
+____________________________________________________________________
+
+2.
+git clone --recursive https://gitlab.com/mildlyparallel/dashh
+cd dashh/
+git checkout 1.0.5
+meson -Dprefix=$HOME/tmp3 build
+cd build/
+ninja
+ninja install
+export PATH=$PATH:$HOME/tmp3/bin
+export LD_LIBRARY_PATH=$HOME/tmp3/lib
+g++ -L$HOME/tmp7/lib/x86_64-linux-gnu -ldashh
+____________________________________________________________________
+
+3.
+cd ts-1.0.1
+./makedeb
+make
+make install PREFIX=$HOME/tmp5
+export PATH=$PATH:$HOME/tmp5/bin
+export LD_LIBRARY_PATH=$HOME/tmp5/lib
+ts -- version
+____________________________________________________________________
+4.
+git clone --recursive https://github.com/bruceg/nullmailer
+cd nullmailer/
+git checkout 2.2
+sh autogen.sh
+autoreconf -vif
+./configure –prefix=$HOME/tmp4
+make
+make install
+export PATH=$PATH:$HOME/tmp4/bin
+export LD_LIBRARY_PATH=$HOME/tmp4/lib
+nullmailer-dsn --help
+
